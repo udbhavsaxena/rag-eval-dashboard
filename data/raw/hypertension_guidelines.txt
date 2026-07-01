@@ -1,0 +1,99 @@
+HYPERTENSION MANAGEMENT GUIDELINES
+Clinical Practice Summary (Demo Document — Not Medical Advice)
+
+DEFINITION AND CLASSIFICATION
+Hypertension is defined as a sustained elevation in systolic blood pressure (SBP) ≥130 mmHg
+or diastolic blood pressure (DBP) ≥80 mmHg, based on an average of ≥2 careful readings
+on ≥2 occasions (ACC/AHA 2017 guidelines).
+
+Blood Pressure Classification:
+- Normal:        SBP < 120 AND DBP < 80 mmHg
+- Elevated:      SBP 120–129 AND DBP < 80 mmHg
+- Stage 1 HTN:   SBP 130–139 OR DBP 80–89 mmHg
+- Stage 2 HTN:   SBP ≥140 OR DBP ≥90 mmHg
+- Hypertensive Crisis: SBP >180 and/or DBP >120 mmHg
+
+BLOOD PRESSURE TARGETS
+For most adults with hypertension: target < 130/80 mmHg.
+For adults with high cardiovascular risk (10-year ASCVD risk ≥10%): target < 130/80 mmHg.
+For adults aged ≥65 with hypertension: treat to SBP < 130 mmHg if tolerated.
+For adults with CKD: target < 130/80 mmHg to slow progression of kidney disease.
+For adults with diabetes and hypertension: target < 130/80 mmHg.
+
+LIFESTYLE MODIFICATIONS (Non-Pharmacological Treatment)
+All patients with elevated BP or hypertension should be counseled on:
+
+1. DASH Diet (Dietary Approaches to Stop Hypertension):
+   - Rich in fruits, vegetables, whole grains, low-fat dairy
+   - Reduced saturated fat, total fat, and sodium
+   - Expected BP reduction: 8–14 mmHg systolic
+
+2. Sodium Restriction:
+   - Reduce sodium intake to < 1500 mg/day (optimal)
+   - Aim for < 2300 mg/day at minimum
+   - Expected BP reduction: 2–8 mmHg
+
+3. Physical Activity:
+   - At least 150 minutes per week of moderate-intensity aerobic activity
+   - Or 75 minutes per week of vigorous-intensity activity
+   - Expected BP reduction: 4–9 mmHg
+
+4. Weight Reduction:
+   - Aim for BMI < 25 kg/m²
+   - Expected BP reduction: 5–20 mmHg per 10 kg weight loss
+
+5. Alcohol Moderation:
+   - Men: ≤2 drinks/day; Women: ≤1 drink/day
+   - Expected BP reduction: 2–4 mmHg
+
+6. Smoking Cessation:
+   - Strongly recommended; smoking increases cardiovascular risk substantially
+
+PHARMACOLOGICAL TREATMENT
+First-line agents for most patients:
+
+Thiazide diuretics (e.g., hydrochlorothiazide, chlorthalidone):
+- Effective for most patients
+- Chlorthalidone preferred over HCTZ for cardiovascular outcomes
+
+ACE Inhibitors (e.g., lisinopril, enalapril):
+- Preferred in patients with CKD, diabetes with proteinuria, or heart failure
+- Avoid in pregnancy (teratogenic)
+
+Angiotensin Receptor Blockers (ARBs) (e.g., losartan, valsartan):
+- Alternative to ACE inhibitors (better tolerated; no cough side effect)
+- Preferred in patients who cannot tolerate ACE inhibitor cough
+
+Calcium Channel Blockers (CCBs) (e.g., amlodipine, diltiazem):
+- Effective in older adults and patients with isolated systolic hypertension
+- Dihydropyridines preferred (amlodipine)
+
+Beta-blockers (e.g., metoprolol, carvedilol):
+- Not first-line for hypertension unless concurrent indication (e.g., angina, HFrEF)
+- Useful for patients post-MI or with atrial fibrillation
+
+RESISTANT HYPERTENSION
+Defined as BP remaining above goal despite use of ≥3 antihypertensive medications
+(including a diuretic) at maximum tolerated doses.
+Evaluation should include:
+- Rule out secondary causes (primary hyperaldosteronism, renal artery stenosis, OSA)
+- Confirm medication adherence
+- Check white coat effect (ambulatory BP monitoring)
+Additional agents: aldosterone antagonist (spironolactone), alpha-blockers, central agents
+
+MONITORING AND FOLLOW-UP
+- Recheck BP in 1 month after initiating or changing therapy
+- Once stable, every 3–6 months
+- Monitor electrolytes and renal function when using ACE inhibitors, ARBs, or diuretics
+- Assess overall cardiovascular risk annually
+
+HYPERTENSIVE URGENCY AND EMERGENCY
+Hypertensive Urgency: SBP >180 or DBP >120 without acute end-organ damage
+- Oral medications; goal to reduce BP over 24–48 hours
+- Oral labetalol or clonidine commonly used
+
+Hypertensive Emergency: severe BP elevation WITH end-organ damage
+(stroke, MI, aortic dissection, pulmonary edema, hypertensive encephalopathy)
+- IV medications in monitored setting
+- Reduce MAP by ≤25% in first hour; avoid rapid falls
+- IV agents: labetalol, nicardipine, sodium nitroprusside

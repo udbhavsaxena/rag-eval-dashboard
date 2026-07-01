@@ -1,0 +1,38 @@
+# ── Secrets ──────────────────────────────────────────────────────────────────
+.env
+
+# ── Generated artifacts (rebuild with scripts/build_index.py) ────────────────
+data/processed/chunks.jsonl
+data/processed/embeddings/faiss.index
+data/processed/embeddings/chunk_map.jsonl
+
+# ── Run outputs (rebuild with scripts/run_eval.py) ───────────────────────────
+runs/traces.jsonl
+runs/eval_results.jsonl
+
+# ── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Editor ───────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ── Claude Code internal ──────────────────────────────────────────────────────
+.claude/

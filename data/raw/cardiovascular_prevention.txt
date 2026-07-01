@@ -1,0 +1,110 @@
+CARDIOVASCULAR DISEASE PREVENTION GUIDELINES
+Clinical Practice Summary (Demo Document — Not Medical Advice)
+
+PRIMARY PREVENTION OVERVIEW
+Primary prevention refers to interventions to prevent a first cardiovascular event
+in individuals without established CVD. Risk assessment is the foundation.
+
+CARDIOVASCULAR RISK ASSESSMENT
+10-Year ASCVD Risk Calculation (Pooled Cohort Equations):
+- Inputs: age, sex, race, total cholesterol, HDL-C, systolic BP, BP treatment status,
+  diabetes status, smoking status
+- High risk: ≥10% 10-year ASCVD risk
+- Intermediate risk: 7.5–<10%
+- Borderline risk: 5–<7.5%
+- Low risk: <5%
+
+Risk-Enhancing Factors (to consider when risk is borderline/intermediate):
+- Family history of premature ASCVD (males <55, females <65)
+- LDL-C ≥160 mg/dL
+- Metabolic syndrome
+- CKD
+- Inflammatory conditions (RA, psoriasis, HIV)
+- Premature menopause or history of preeclampsia
+- South Asian ancestry
+- High-sensitivity CRP ≥2 mg/L
+- Ankle-brachial index < 0.9
+- Coronary artery calcium (CAC) score > 0
+
+STATIN THERAPY
+Indications for statin therapy:
+1. Clinical ASCVD (secondary prevention): high-intensity statin regardless of LDL
+2. LDL ≥190 mg/dL: high-intensity statin
+3. Diabetes (age 40–75): moderate-intensity statin; high-intensity if ≥20% 10-yr risk
+4. Primary prevention (age 40–75, LDL 70–189, ≥7.5% 10-yr risk): moderate-to-high statin
+
+Statin intensity:
+- High-intensity: ≥50% LDL reduction
+  (atorvastatin 40–80 mg, rosuvastatin 20–40 mg)
+- Moderate-intensity: 30–49% LDL reduction
+  (atorvastatin 10–20 mg, simvastatin 20–40 mg, pravastatin 40–80 mg)
+- Low-intensity: <30% LDL reduction
+
+LDL Targets (for statin-treated patients):
+- Secondary prevention (very high risk): LDL < 55 mg/dL (ESC) or < 70 mg/dL (ACC/AHA)
+- Primary prevention (high risk): < 70 mg/dL
+- Primary prevention (moderate risk): < 100 mg/dL
+
+Non-statin lipid-lowering:
+- Ezetimibe: add to statin if LDL not at goal (reduces LDL ~18–20%)
+- PCSK9 inhibitors (evolocumab, alirocumab): for very high-risk patients
+  not at LDL goal on maximally tolerated statin + ezetimibe
+- Bempedoic acid: for statin-intolerant patients
+
+ANTIPLATELET THERAPY
+Aspirin for primary prevention:
+- Low-dose aspirin (81 mg/day) is NOT routinely recommended for primary prevention
+  in most adults due to increased bleeding risk outweighing benefit
+- May be considered in selected patients aged 40–70 at high ASCVD risk and low bleed risk
+  (USPSTF 2022 guideline)
+- Aspirin for secondary prevention: 81 mg/day indefinitely after MI or stroke
+
+Dual antiplatelet therapy (DAPT):
+- After ACS: aspirin + P2Y12 inhibitor (ticagrelor or prasugrel preferred over clopidogrel)
+  for 12 months, then long-term aspirin
+- After elective PCI with stent: 6 months DAPT minimum; may extend in high ischemic risk
+
+BLOOD PRESSURE IN CVD PREVENTION
+- Target < 130/80 mmHg for adults with CVD or high 10-year ASCVD risk ≥10%
+- Even modest reductions in SBP significantly reduce CVD events
+- Treat with lifestyle first; add medications if lifestyle insufficient after 3 months
+
+LIFESTYLE INTERVENTIONS FOR CVD PREVENTION
+1. Smoking cessation: single most important modifiable risk factor
+   - Pharmacotherapy: varenicline (most effective), bupropion, NRT
+   - Reduces CVD risk substantially within 1–2 years
+
+2. Diet:
+   - Mediterranean or DASH dietary pattern
+   - Reduce saturated fat; replace with unsaturated fats (olive oil, nuts)
+   - Increase omega-3 fatty acids (fish 2×/week or supplements in high-risk)
+   - Reduce processed food and added sugars
+
+3. Physical Activity:
+   - 150 min/week moderate-intensity or 75 min/week vigorous aerobic activity
+   - Muscle-strengthening activities ≥2 days/week
+   - Reduces CVD risk by 30–35%
+
+4. Weight Management:
+   - BMI 18.5–24.9 kg/m²; waist circumference: <102 cm (men), <88 cm (women)
+   - Even 5–10% weight reduction improves CVD risk factors
+
+5. Alcohol:
+   - No alcohol is the safest level for cardiovascular health (WHO 2022)
+   - If drinking: limit to ≤1 standard drink/day
+
+METABOLIC SYNDROME
+Diagnosis requires ≥3 of 5 criteria:
+1. Waist circumference ≥102 cm (men) or ≥88 cm (women)
+2. Fasting triglycerides ≥150 mg/dL
+3. HDL-C < 40 mg/dL (men) or < 50 mg/dL (women)
+4. Blood pressure ≥130/85 mmHg (or on antihypertensive treatment)
+5. Fasting glucose ≥100 mg/dL (or on glucose-lowering treatment)
+
+Treatment: primarily lifestyle modification; address individual components
+
+SCREENING AND MONITORING
+- Lipid panel: adults aged 20+ every 4–6 years; more frequently if high risk
+- Fasting glucose and A1C: every 3 years if at risk for diabetes
+- Blood pressure: every year if normal; more frequently if elevated
+- 10-year ASCVD risk: recalculate every 4–6 years

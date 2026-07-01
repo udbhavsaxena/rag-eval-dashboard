@@ -1,0 +1,22 @@
+# Core
+streamlit>=1.35.0
+pandas>=2.0.0
+numpy>=1.24.0,<2.0.0
+python-dotenv>=1.0.0
+
+# Embeddings (local, no API key needed)
+# sentence-transformers 2.x works with PyTorch 2.0; 3.x+ requires PyTorch 2.4+
+sentence-transformers>=2.7.0,<3.0.0
+transformers>=4.40.0,<5.0.0
+
+# Vector store
+faiss-cpu>=1.7.0
+
+# Charts
+plotly>=5.20.0
+
+# Optional: OpenAI generation + judging
+# openai>=1.30.0
+
+# Optional: better token counting
+# tiktoken>=0.7.0

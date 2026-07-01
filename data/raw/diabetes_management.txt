@@ -1,0 +1,111 @@
+TYPE 2 DIABETES MANAGEMENT GUIDELINES
+Clinical Practice Summary (Demo Document — Not Medical Advice)
+
+DIAGNOSIS
+Diabetes is diagnosed by any of the following criteria (confirmed on repeat testing):
+- Fasting plasma glucose ≥126 mg/dL (no caloric intake for ≥8 hours)
+- 2-hour plasma glucose ≥200 mg/dL during OGTT (75g oral glucose)
+- A1C ≥6.5% (using a standardized assay)
+- Random plasma glucose ≥200 mg/dL with classic symptoms of hyperglycemia
+
+Prediabetes (impaired fasting glucose or impaired glucose tolerance):
+- Fasting glucose: 100–125 mg/dL
+- 2-hour OGTT: 140–199 mg/dL
+- A1C: 5.7–6.4%
+
+GLYCEMIC TARGETS
+For most non-pregnant adults with type 2 diabetes:
+- A1C target: < 7.0%
+- Preprandial glucose: 80–130 mg/dL
+- Peak postprandial glucose (1–2 h after meal): < 180 mg/dL
+
+Less stringent targets (A1C < 8.0%) may be appropriate for:
+- Limited life expectancy
+- Extensive comorbidities
+- High hypoglycemia risk
+- Long duration of diabetes with difficulty achieving target
+
+More stringent targets (A1C < 6.5%) may be considered in younger patients
+with short disease duration and no cardiovascular disease, if achievable without
+significant hypoglycemia or polypharmacy.
+
+LIFESTYLE MODIFICATIONS
+Lifestyle intervention is the cornerstone of type 2 diabetes management.
+
+1. Medical Nutrition Therapy (MNT):
+   - No single optimal macronutrient distribution; individualize to patient
+   - Reduce processed carbohydrates; prefer low-glycemic index foods
+   - Caloric restriction to achieve weight loss in overweight/obese patients
+   - Mediterranean or DASH diet patterns show benefit
+   - Referral to a registered dietitian recommended
+
+2. Physical Activity:
+   - ≥150 minutes/week of moderate-intensity aerobic exercise
+   - Resistance training ≥2 days/week
+   - Reduce prolonged sedentary time; break up sitting every 30 minutes
+   - Pre-exercise screening for cardiovascular disease and neuropathy
+
+3. Weight Management:
+   - Even modest weight loss (5–10% of body weight) significantly improves glycemia
+   - Goal: BMI < 25; in Asians < 23 kg/m²
+   - Consider referral for bariatric surgery in BMI ≥35 (or ≥30 in some guidelines)
+
+4. Smoking Cessation:
+   - Smoking worsens insulin resistance and cardiovascular risk
+   - Offer counseling and pharmacotherapy (varenicline, bupropion, NRT)
+
+5. Alcohol:
+   - Moderate use: ≤1 drink/day (women), ≤2 drinks/day (men)
+   - Monitor for hypoglycemia especially with insulin or sulfonylureas
+
+PHARMACOLOGICAL TREATMENT
+First-line: Metformin (if tolerated and not contraindicated)
+- Reduces hepatic glucose production
+- Weight-neutral or modest weight loss
+- Contraindicated in severe renal impairment (eGFR < 30 mL/min/1.73m²)
+- Hold before contrast procedures
+
+Second-line agents (choice driven by comorbidities):
+
+GLP-1 Receptor Agonists (e.g., semaglutide, liraglutide, dulaglutide):
+- Preferred for patients with established ASCVD or high CV risk
+- Significant weight loss benefit
+- Once weekly or daily injectable; oral semaglutide available
+
+SGLT-2 Inhibitors (e.g., empagliflozin, dapagliflozin, canagliflozin):
+- Preferred in patients with HFrEF or CKD
+- Reduces hospitalization for heart failure
+- Risk of genital mycotic infections and DKA (especially off-label use)
+
+DPP-4 Inhibitors (e.g., sitagliptin, saxagliptin):
+- Weight neutral; well-tolerated
+- Saxagliptin associated with increased HF hospitalization
+
+Sulfonylureas (e.g., glipizide, glyburide, glimepiride):
+- Inexpensive; effective
+- Risk of hypoglycemia and weight gain
+
+Insulin therapy:
+- Used when oral agents are insufficient
+- Basal insulin (long-acting) often added first
+- Prandial insulin added for post-meal hyperglycemia
+- A1C reduction: 1.5–3.5%
+
+CARDIOVASCULAR RISK REDUCTION
+- Blood pressure target: < 130/80 mmHg
+- LDL-C target: < 70 mg/dL for high-risk patients (established ASCVD)
+- Statin therapy: moderate-to-high intensity recommended for most adults with T2DM aged 40–75
+- Aspirin (75–162 mg/day): for secondary prevention only; not recommended for primary prevention
+
+SCREENING FOR COMPLICATIONS
+At diagnosis, then annually:
+- Diabetic kidney disease: urine albumin-to-creatinine ratio + eGFR
+- Diabetic retinopathy: dilated fundus exam
+- Diabetic neuropathy: foot exam with monofilament, vibration, ankle reflexes
+- Cardiovascular disease: BP, lipids, ECG if symptomatic
+
+HYPOGLYCEMIA MANAGEMENT
+Mild-moderate: 15g fast-acting carbohydrates (glucose tablets, juice) — "rule of 15"
+Wait 15 minutes; recheck; repeat if BG < 70 mg/dL
+Severe (cannot self-treat): glucagon kit (nasal or injection); call emergency services
+Adjust medications to prevent recurrence

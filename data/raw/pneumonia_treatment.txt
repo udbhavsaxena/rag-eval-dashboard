@@ -1,0 +1,97 @@
+COMMUNITY-ACQUIRED PNEUMONIA (CAP) TREATMENT GUIDELINES
+Clinical Practice Summary (Demo Document — Not Medical Advice)
+
+DEFINITION
+Community-acquired pneumonia (CAP) is an acute infection of the pulmonary parenchyma
+acquired outside of a healthcare setting, in patients who have not been recently hospitalized
+or in long-term care facilities.
+
+DIAGNOSIS
+Clinical presentation:
+- New cough (productive or non-productive)
+- Fever, chills, rigors
+- Pleuritic chest pain
+- Dyspnea, tachypnea
+- Physical exam: dullness to percussion, bronchial breath sounds, crackles
+
+Radiographic confirmation:
+- Chest X-ray: new infiltrate required for definitive diagnosis
+- CT chest: higher sensitivity; useful if CXR equivocal or complications suspected
+
+Laboratory workup (for hospitalized patients):
+- CBC, comprehensive metabolic panel
+- Blood cultures × 2 (before antibiotics if possible)
+- Sputum Gram stain and culture
+- Urinary antigen tests (Streptococcus pneumoniae, Legionella pneumophila)
+- Procalcitonin (to guide antibiotic duration)
+
+SEVERITY ASSESSMENT — PSI / PORT Score and CURB-65
+CURB-65 criteria (1 point each):
+- Confusion (new onset)
+- Urea > 7 mmol/L (BUN > 19 mg/dL)
+- Respiratory rate ≥ 30/min
+- Blood pressure (SBP < 90 or DBP ≤ 60 mmHg)
+- Age ≥ 65 years
+
+Score interpretation:
+- 0–1: Low risk; outpatient treatment
+- 2: Intermediate risk; consider short-stay inpatient
+- 3–5: High risk; hospitalize; consider ICU if ≥4
+
+ANTIBIOTIC TREATMENT
+
+Outpatient Treatment (mild CAP, healthy patient, no recent antibiotics):
+First-line options:
+1. Amoxicillin 1g PO three times daily × 5–7 days (preferred for low-risk typical CAP)
+2. Doxycycline 100 mg PO twice daily × 5 days (if atypical pathogen suspected)
+3. Azithromycin 500 mg day 1, then 250 mg days 2–5 (macrolide; consider local resistance)
+   - Note: Macrolide monotherapy only if pneumococcal resistance < 25% locally
+
+Outpatient Treatment (comorbidities: COPD, diabetes, renal/liver disease, alcoholism):
+- Combination therapy:
+  - Amoxicillin-clavulanate 875/125 mg PO twice daily + azithromycin or doxycycline
+  - OR respiratory fluoroquinolone (levofloxacin 750 mg PO daily or moxifloxacin 400 mg PO daily)
+  - Duration: 5 days (if clinical stability achieved)
+
+Inpatient (Non-ICU) Treatment:
+1. Beta-lactam + macrolide:
+   - Ampicillin-sulbactam 3g IV every 6h + azithromycin 500 mg IV/PO daily
+   - OR ceftriaxone 1–2 g IV daily + azithromycin 500 mg daily
+2. Respiratory fluoroquinolone monotherapy:
+   - Levofloxacin 750 mg IV/PO daily
+   - Moxifloxacin 400 mg IV/PO daily
+
+Inpatient (ICU) Treatment:
+- Beta-lactam + macrolide or respiratory fluoroquinolone
+- If Pseudomonas risk: anti-pseudomonal beta-lactam (piperacillin-tazobactam or cefepime)
+  + ciprofloxacin or aminoglycoside
+- If MRSA risk or prior MRSA: add vancomycin or linezolid
+
+SPECIAL PATHOGENS
+Legionella pneumophila:
+- Atypical presentation: GI symptoms, hyponatremia, high fever, elevated LFTs
+- Treatment: levofloxacin, azithromycin, or doxycycline; NOT beta-lactams
+
+Pneumocystis jirovecii (PCP) — in immunocompromised:
+- Treatment: TMP-SMX (trimethoprim-sulfamethoxazole)
+- Add corticosteroids if PaO2 < 70 mmHg
+
+Aspiration Pneumonia:
+- Typically anaerobes ± gram-negatives
+- Amoxicillin-clavulanate or piperacillin-tazobactam; metronidazole can be added
+
+DURATION OF THERAPY
+- Minimum 5 days; patient must be afebrile × 48–72 hours and clinically stable
+- Extend to 7–10 days for bacteremic CAP, MRSA, or Legionella
+- Use procalcitonin to guide de-escalation
+
+RESPONSE TO TREATMENT
+- Most patients improve within 3–5 days
+- Failure to improve: consider resistant organisms, unusual pathogens, complications
+  (empyema, parapneumonic effusion, lung abscess), or alternative diagnoses
+- Follow-up chest imaging at 7–12 weeks post-discharge (especially in smokers >50)
+
+PREVENTION
+- Pneumococcal vaccines (PCV15/PCV20 and PPSV23): adults ≥65, immunocompromised
+- Influenza vaccine: annually for all adults
+- Smoking cessation strongly recommended
