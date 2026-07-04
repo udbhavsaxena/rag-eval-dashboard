@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 from src.chunking import Chunk
-from src.config import EVAL_CSV, EVAL_RESULTS_FILE, PRECISION_K, RECALL_K, TOP_K
+from src.config import EVAL_CSV, EVAL_RESULTS_FILE, PRECISION_K, RECALL_K, TOP_K, TRACES_FILE
 from src.cost import CostEstimate, estimate_cost
 from src.generator import GenerationResult, generate_answer
 from src.judge import FaithfulnessResult, judge_faithfulness
@@ -25,6 +25,7 @@ def run_pipeline(
     reranker=None,
     eval_csv: Path = EVAL_CSV,
     results_path: Path = EVAL_RESULTS_FILE,
+    traces_path: Path = TRACES_FILE,
     k: int = TOP_K,
     verbose: bool = True,
 ) -> list[dict]:
@@ -42,7 +43,7 @@ def run_pipeline(
         if verbose:
             print(f"  Evaluating: {row['query_id']} — {row['query'][:60]}...")
 
-        result = _evaluate_query(row, retriever, reranker, k=k)
+        result = _evaluate_query(row, retriever, reranker, k=k, traces_path=traces_path)
         results.append(result)
 
     _save_results(results, results_path)
@@ -51,7 +52,7 @@ def run_pipeline(
     return results
 
 
-def _evaluate_query(row: pd.Series, retriever: Retriever, reranker, k: int) -> dict:
+def _evaluate_query(row: pd.Series, retriever: Retriever, reranker, k: int, traces_path: Path = TRACES_FILE) -> dict:
     query_id = str(row["query_id"])
     query = str(row["query"])
     relevant_ids = _parse_relevant_ids(str(row.get("relevant_chunk_ids", "")))
@@ -109,7 +110,7 @@ def _evaluate_query(row: pd.Series, retriever: Retriever, reranker, k: int) -> d
         model_used=gen.model_used,
         judge_model=judgment.judge_model,
     )
-    save_trace(trace)
+    save_trace(trace, path=traces_path)
 
     result = {
         "query_id": query_id,

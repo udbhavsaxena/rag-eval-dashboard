@@ -23,6 +23,54 @@ EVAL_RESULTS_FILE = RUNS_DIR / "eval_results.jsonl"
 INDEX_PATH = EMBEDDINGS_DIR / "faiss.index"
 CHUNK_MAP_PATH = EMBEDDINGS_DIR / "chunk_map.jsonl"
 
+# ── Chunking strategies ───────────────────────────────────────────────────────
+CHUNKER_STRATEGIES: tuple[str, ...] = ("word", "sentence", "semantic")
+
+
+def get_chunks_file(strategy: str = "word") -> Path:
+    if strategy == "word":
+        return CHUNKS_FILE
+    return PROCESSED_DIR / f"chunks_{strategy}.jsonl"
+
+
+def get_index_dir(strategy: str = "word") -> Path:
+    if strategy == "word":
+        return EMBEDDINGS_DIR
+    return PROCESSED_DIR / f"embeddings_{strategy}"
+
+
+def get_index_path(strategy: str = "word") -> Path:
+    return get_index_dir(strategy) / "faiss.index"
+
+
+def get_chunk_map_path(strategy: str = "word") -> Path:
+    return get_index_dir(strategy) / "chunk_map.jsonl"
+
+
+def get_eval_results_file(strategy: str = "word") -> Path:
+    if strategy == "word":
+        return EVAL_RESULTS_FILE
+    return RUNS_DIR / f"eval_results_{strategy}.jsonl"
+
+
+def get_traces_file(strategy: str = "word") -> Path:
+    if strategy == "word":
+        return TRACES_FILE
+    return RUNS_DIR / f"traces_{strategy}.jsonl"
+
+
+def get_eval_csv(strategy: str = "word") -> Path:
+    """Return the eval CSV for *strategy*.
+
+    For non-word strategies the file is created by remap_eval_set.py.
+    Falls back to the base eval_set.csv if the strategy-specific file does
+    not exist (warns so the user knows metrics may be inaccurate).
+    """
+    if strategy == "word":
+        return EVAL_CSV
+    p = EVAL_CSV.parent / f"eval_set_{strategy}.csv"
+    return p
+
 # ── Chunking ─────────────────────────────────────────────────────────────────
 CHUNK_SIZE: int = 400          # tokens (approximated as words)
 CHUNK_OVERLAP: int = 80

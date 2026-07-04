@@ -2,13 +2,23 @@
 .env
 
 # ── Generated artifacts (rebuild with scripts/build_index.py) ────────────────
+# Chunk JSONL files (text, but large build artifacts — not useful to version)
 data/processed/chunks.jsonl
-data/processed/embeddings/faiss.index
-data/processed/embeddings/chunk_map.jsonl
+data/processed/chunks_sentence.jsonl
+data/processed/chunks_semantic.jsonl
+# FAISS binary indices (not human-readable, large)
+data/processed/embeddings/
+data/processed/embeddings_sentence/
+data/processed/embeddings_semantic/
 
-# ── Run outputs (rebuild with scripts/run_eval.py) ───────────────────────────
+# ── Run outputs ───────────────────────────────────────────────────────────────
+# Traces are verbose (full chunk text + answers); exclude to keep the repo lean
 runs/traces.jsonl
-runs/eval_results.jsonl
+runs/traces_sentence.jsonl
+runs/traces_semantic.jsonl
+# eval_results*.jsonl are small metric summaries — committed so the repo shows
+# benchmark numbers without requiring the reader to re-run the pipeline
+# (no exclusion here — all eval_results*.jsonl files are tracked)
 
 # ── Python ───────────────────────────────────────────────────────────────────
 __pycache__/

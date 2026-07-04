@@ -16,7 +16,16 @@ import streamlit as st
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
 
-from src.config import EVAL_RESULTS_FILE, TRACES_FILE, EVAL_CSV, INDEX_PATH
+from src.config import (
+    CHUNKER_STRATEGIES,
+    EVAL_RESULTS_FILE,
+    EVAL_CSV,
+    INDEX_PATH,
+    TRACES_FILE,
+    get_eval_results_file,
+    get_index_path,
+    get_traces_file,
+)
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -36,11 +45,12 @@ DISCLAIMER = (
 # ── Data loading ──────────────────────────────────────────────────────────────
 
 @st.cache_data(ttl=30)
-def load_results() -> pd.DataFrame | None:
-    if not EVAL_RESULTS_FILE.exists():
+def load_results(strategy: str = "word") -> pd.DataFrame | None:
+    path = get_eval_results_file(strategy)
+    if not path.exists():
         return None
     rows = []
-    with EVAL_RESULTS_FILE.open() as fh:
+    with path.open() as fh:
         for line in fh:
             line = line.strip()
             if line:
@@ -49,11 +59,12 @@ def load_results() -> pd.DataFrame | None:
 
 
 @st.cache_data(ttl=30)
-def load_traces() -> list[dict]:
-    if not TRACES_FILE.exists():
+def load_traces(strategy: str = "word") -> list[dict]:
+    path = get_traces_file(strategy)
+    if not path.exists():
         return []
     traces = []
-    with TRACES_FILE.open() as fh:
+    with path.open() as fh:
         for line in fh:
             line = line.strip()
             if line:
@@ -61,9 +72,20 @@ def load_traces() -> list[dict]:
     return traces
 
 
+@st.cache_data(ttl=30)
+def load_all_strategy_results() -> dict[str, pd.DataFrame]:
+    """Return {strategy: DataFrame} for every strategy that has results."""
+    available: dict[str, pd.DataFrame] = {}
+    for strategy in CHUNKER_STRATEGIES:
+        df = load_results(strategy)
+        if df is not None and not df.empty:
+            available[strategy] = df
+    return available
+
+
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 
-def sidebar() -> None:
+def sidebar() -> tuple[str]:
     with st.sidebar:
         st.image(
             "https://img.shields.io/badge/RAG-Eval%20Dashboard-blueviolet?style=for-the-badge",
@@ -74,21 +96,40 @@ def sidebar() -> None:
             """
 - [Overview](#overview)
 - [Charts](#charts)
+- [Chunker Comparison](#chunker-comparison)
 - [Failure Analysis](#failure-analysis)
 - [Trace Viewer](#trace-viewer)
 """
         )
         st.divider()
+
+        st.markdown("### Active Strategy")
+        strategy = st.selectbox(
+            "Chunking strategy",
+            options=list(CHUNKER_STRATEGIES),
+            index=0,
+            help="Select which chunking strategy's results to display in Overview / Charts / Traces.",
+        )
+
+        st.divider()
         st.markdown("### Quick Setup")
         st.code(
-            "python scripts/build_index.py\n"
-            "python scripts/sample_eval_set.py --create\n"
-            "# Edit data/eval/eval_set.csv\n"
-            "python scripts/run_eval.py",
+            "# Build index for each strategy\n"
+            "python scripts/build_index.py --chunker word\n"
+            "python scripts/build_index.py --chunker sentence\n"
+            "python scripts/build_index.py --chunker semantic\n\n"
+            "# Run eval for each strategy\n"
+            "python scripts/run_eval.py --chunker word\n"
+            "python scripts/run_eval.py --chunker sentence\n"
+            "python scripts/run_eval.py --chunker semantic\n\n"
+            "# Compare in terminal\n"
+            "python scripts/run_eval.py --compare",
             language="bash",
         )
         st.divider()
         st.info(DISCLAIMER)
+
+    return (strategy,)
 
 
 # ── Setup check ───────────────────────────────────────────────────────────────
@@ -371,10 +412,124 @@ def section_trace_viewer(traces: list[dict], df: pd.DataFrame) -> None:
         st.json(trace)
 
 
+# ── Chunker comparison section ────────────────────────────────────────────────
+
+def section_chunker_comparison(all_results: dict[str, pd.DataFrame]) -> None:
+    import plotly.express as px
+    import plotly.graph_objects as go
+
+    st.header("Chunker Comparison", anchor="chunker-comparison")
+
+    if not all_results:
+        st.info(
+            "No strategy results found yet.\n\n"
+            "Build at least one index and run eval:\n"
+            "```bash\n"
+            "python scripts/build_index.py --chunker sentence\n"
+            "python scripts/run_eval.py --chunker sentence\n"
+            "```"
+        )
+        return
+
+    # ── Summary table ─────────────────────────────────────────────────────────
+    summary_rows = []
+    metric_cols = ["recall_at_k", "precision_at_k", "mrr", "ndcg_at_k", "faithfulness_score"]
+    for strategy, df in all_results.items():
+        row = {"Strategy": strategy, "Queries": len(df)}
+        for col in metric_cols:
+            if col in df.columns:
+                row[col] = round(df[col].mean(), 4)
+        row["Avg Latency (ms)"] = round(df["total_ms"].mean(), 1) if "total_ms" in df.columns else None
+        summary_rows.append(row)
+
+    summary_df = pd.DataFrame(summary_rows)
+    st.subheader("Summary Table")
+    st.dataframe(summary_df, use_container_width=True, hide_index=True)
+
+    if len(all_results) < 2:
+        st.caption("Build and run more strategies to see a visual comparison.")
+        return
+
+    # ── Grouped bar chart ─────────────────────────────────────────────────────
+    st.subheader("Metric Comparison")
+    bar_rows = []
+    for strategy, df in all_results.items():
+        for col in metric_cols:
+            if col in df.columns:
+                bar_rows.append({
+                    "Strategy": strategy,
+                    "Metric": col.replace("_at_k", "").replace("_", " ").title(),
+                    "Score": round(df[col].mean(), 4),
+                })
+
+    bar_df = pd.DataFrame(bar_rows)
+    fig = px.bar(
+        bar_df,
+        x="Metric",
+        y="Score",
+        color="Strategy",
+        barmode="group",
+        height=380,
+        color_discrete_map={"word": "#3498db", "sentence": "#2ecc71", "semantic": "#e74c3c"},
+    )
+    fig.update_layout(yaxis_range=[0, 1.05], margin=dict(t=20), legend_title_text="")
+    st.plotly_chart(fig, use_container_width=True)
+
+    # ── Radar chart ───────────────────────────────────────────────────────────
+    st.subheader("Radar Chart")
+    radar_metrics = ["recall_at_k", "precision_at_k", "mrr", "ndcg_at_k", "faithfulness_score"]
+    radar_labels = ["Recall", "Precision", "MRR", "nDCG", "Faithfulness"]
+    colors = {"word": "#3498db", "sentence": "#2ecc71", "semantic": "#e74c3c"}
+
+    fig2 = go.Figure()
+    for strategy, df in all_results.items():
+        values = [
+            round(df[m].mean(), 4) if m in df.columns else 0
+            for m in radar_metrics
+        ]
+        values += [values[0]]  # close the polygon
+        fig2.add_trace(go.Scatterpolar(
+            r=values,
+            theta=radar_labels + [radar_labels[0]],
+            fill="toself",
+            name=strategy,
+            line_color=colors.get(strategy),
+            opacity=0.6,
+        ))
+
+    fig2.update_layout(
+        polar=dict(radialaxis=dict(visible=True, range=[0, 1])),
+        showlegend=True,
+        height=420,
+        margin=dict(t=30),
+    )
+    st.plotly_chart(fig2, use_container_width=True)
+
+    # ── Latency comparison ────────────────────────────────────────────────────
+    st.subheader("Average Latency per Strategy (ms)")
+    lat_rows = [
+        {"Strategy": s, "Avg Latency (ms)": round(df["total_ms"].mean(), 1)}
+        for s, df in all_results.items()
+        if "total_ms" in df.columns
+    ]
+    if lat_rows:
+        lat_df = pd.DataFrame(lat_rows)
+        fig3 = px.bar(
+            lat_df,
+            x="Strategy",
+            y="Avg Latency (ms)",
+            height=280,
+            color="Strategy",
+            color_discrete_map=colors,
+        )
+        fig3.update_layout(showlegend=False, margin=dict(t=10))
+        st.plotly_chart(fig3, use_container_width=True)
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    sidebar()
+    (strategy,) = sidebar()
 
     st.title("🔬 RAG Eval Dashboard")
     st.caption("End-to-end retrieval & faithfulness evaluation over clinical guidelines")
@@ -384,26 +539,37 @@ def main() -> None:
     if not check_setup():
         return
 
-    df = load_results()
-    traces = load_traces()
+    df = load_results(strategy)
+    traces = load_traces(strategy)
+    all_results = load_all_strategy_results()
 
     if df is None or df.empty:
-        st.warning("No evaluation results yet. Run `python scripts/run_eval.py` first.")
-        return
+        st.warning(
+            f"No evaluation results for strategy **'{strategy}'** yet.  \n"
+            f"Run: `python scripts/run_eval.py --chunker {strategy}`"
+        )
+    else:
+        section_overview(df)
+        st.divider()
 
-    section_overview(df)
-    st.divider()
+        try:
+            import plotly.express  # noqa: F401
+            section_charts(df)
+            st.divider()
+        except ImportError:
+            st.info("Install plotly (`pip install plotly`) for interactive charts.")
 
     try:
         import plotly.express  # noqa: F401
-        section_charts(df)
+        section_chunker_comparison(all_results)
         st.divider()
     except ImportError:
-        st.info("Install plotly (`pip install plotly`) for interactive charts.")
+        pass
 
-    section_failures(df)
-    st.divider()
-    section_trace_viewer(traces, df)
+    if df is not None and not df.empty:
+        section_failures(df)
+        st.divider()
+        section_trace_viewer(traces, df)
 
 
 if __name__ == "__main__":

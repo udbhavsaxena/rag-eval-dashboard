@@ -1,0 +1,11 @@
+query_id,query,relevant_chunk_ids,expected_answer_notes
+q001,What are the recommended blood pressure targets for hypertensive patients?,hypertension_guidelines_chunk0000_505f7b1f,Should mention <130/80 mmHg for most adults; also targets for CKD and diabetes patients
+q002,What lifestyle modifications are recommended for type 2 diabetes management?,diabetes_management_chunk0000_e137b010|diabetes_management_chunk0014_e79d4a98,Diet (MNT/Mediterranean/DASH); 150 min/week exercise; weight loss 5-10%; smoking cessation
+q003,What are the first-line antibiotic choices for community-acquired pneumonia?,pneumonia_treatment_chunk0004_eff03a98|pneumonia_treatment_chunk0008_95120c95,Amoxicillin for healthy outpatients; ceftriaxone+azithromycin or fluoroquinolone for inpatients
+q004,When should statin therapy be initiated for cardiovascular risk reduction?,cardiovascular_prevention_chunk0003_fb406b7e,Clinical ASCVD; LDL >=190; diabetes age 40-75; 10-year ASCVD risk >=7.5%
+q005,What screening tests are recommended for colorectal cancer?,preventive_care_chunk0002_0f3acf59,Colonoscopy every 10yr; FIT annually; CT colonography every 5yr; start at age 45
+q006,What are the diagnostic criteria for metabolic syndrome?,cardiovascular_prevention_chunk0004_94272027,3 of 5 criteria: waist circumference; triglycerides >=150; low HDL; BP >=130/85; fasting glucose >=100
+q007,How should asthma severity be classified?,,Not in corpus — system should say guidelines do not cover this topic
+q008,What are the recommended vaccinations for adults over 65?,preventive_care_chunk0003_4854cebc,Influenza high-dose; PCV20 or PCV15+PPSV23; Shingrix 2 doses; updated COVID-19 vaccine annually
+q009,What is the initial treatment approach for acute low back pain?,preventive_care_chunk0003_4854cebc,NSAIDs first-line; stay active; avoid bed rest; heat; no imaging in first 4-6 weeks without red flags
+q010,What are the criteria for diagnosing heart failure with reduced ejection fraction?,,Not in corpus — system should state guidelines do not cover this adequately
