@@ -309,14 +309,13 @@ Use the **strategy selector** in the sidebar to switch between word / sentence /
 
 ## Screenshots
 
-<!-- Add your screenshots here after running the dashboard -->
+| Overview & strategy selector | Charts — retrieval + faithfulness |
+|---|---|
+| ![Overview](assets/screenshot_overview.png) | ![Charts](assets/screenshot_charts.png) |
 
-| Section | Screenshot |
-|---------|-----------|
-| Overview metrics | _screenshot_overview.png_ |
-| Retrieval charts | _screenshot_charts.png_ |
-| Trace viewer | _screenshot_trace.png_ |
-| Failure analysis | _screenshot_failures.png_ |
+| Chunker Comparison — table + bar chart | Failure Analysis & Trace Viewer |
+|---|---|
+| ![Comparison](assets/screenshot_comparison.png) | ![Failures](assets/screenshot_failures.png) |
 
 ---
 
