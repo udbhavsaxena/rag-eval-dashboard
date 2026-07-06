@@ -1,0 +1,156 @@
+digraph RAGEvalDashboard {
+  graph [
+    rankdir=LR,
+    bgcolor="#fbfbfd",
+    pad="0.35",
+    nodesep="0.55",
+    ranksep="0.85",
+    splines=polyline,
+    fontname="Helvetica",
+    fontsize=18,
+    label="RAG Eval Dashboard: file-by-file execution flow"
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fontname="Helvetica",
+    fontsize=11,
+    color="#334155",
+    penwidth=1.2,
+    margin="0.12,0.08"
+  ];
+
+  edge [
+    fontname="Helvetica",
+    fontsize=9,
+    color="#475569",
+    arrowsize=0.75
+  ];
+
+  subgraph cluster_legend {
+    label="How to read this";
+    color="#cbd5e1";
+    style="rounded,dashed";
+    fontsize=12;
+
+    legend_entry [label="Entry-point scripts / UI", fillcolor="#dbeafe"];
+    legend_core [label="Core src modules", fillcolor="#e0f2fe"];
+    legend_data [label="Data artifacts", fillcolor="#fef3c7"];
+    legend_output [label="Generated outputs used by dashboard", fillcolor="#dcfce7"];
+  }
+
+  subgraph cluster_config_data {
+    label="Configuration and data";
+    color="#fde68a";
+    style="rounded";
+
+    config [label="src/config.py\nCentral constants and path helpers\n- chunk strategies\n- Top-K\n- model names\n- output filenames", fillcolor="#e0f2fe"];
+    raw_docs [label="data/raw/*.txt\nClinical guideline corpus", fillcolor="#fef3c7"];
+    eval_csv [label="data/eval/eval_set*.csv\nInterview point: labeled queries +\nrelevant_chunk_ids are ground truth", fillcolor="#fef3c7"];
+    env [label=".env / OPENAI_API_KEY\nOptional: switches generation + judging\nfrom fallback mode to OpenAI mode", fillcolor="#fef3c7"];
+  }
+
+  subgraph cluster_build {
+    label="Index build path: python scripts/build_index.py --chunker <strategy>";
+    color="#bfdbfe";
+    style="rounded";
+
+    build_index [label="scripts/build_index.py\nCLI entry point\n1. load docs\n2. chunk docs\n3. embed chunks\n4. save FAISS index", fillcolor="#dbeafe"];
+    ingest [label="src/ingest.py\nload_documents()\nReads .txt/.md files and creates\nDocument(doc_id, source, title, text)", fillcolor="#e0f2fe"];
+    chunking [label="src/chunking.py\nchunk_documents_strategy()\nword | sentence | semantic\nProduces stable Chunk IDs", fillcolor="#e0f2fe"];
+    embeddings [label="src/embeddings.py\nload_model(), embed_chunks()\nSentenceTransformer creates normalized\nvectors for cosine similarity", fillcolor="#e0f2fe"];
+    vector_store_build [label="src/vector_store.py\nFAISSStore.build(), save()\nIndexFlatIP stores vectors;\nchunk_map.jsonl stores metadata", fillcolor="#e0f2fe"];
+    chunks_file [label="data/processed/chunks*.jsonl\nGenerated chunk text + IDs", fillcolor="#dcfce7"];
+    faiss_index [label="data/processed/embeddings*/\nfaiss.index + chunk_map.jsonl\nSearchable vector index per strategy", fillcolor="#dcfce7"];
+  }
+
+  subgraph cluster_eval_prep {
+    label="Eval-set support scripts";
+    color="#ddd6fe";
+    style="rounded";
+
+    sample_eval [label="scripts/sample_eval_set.py\nCreates starter eval_set.csv or prints\nchunk IDs for manual annotation", fillcolor="#dbeafe"];
+    remap_eval [label="scripts/remap_eval_set.py\nMaps word-strategy labels to sentence /\nsemantic chunk IDs using Jaccard overlap", fillcolor="#dbeafe"];
+  }
+
+  subgraph cluster_eval_runtime {
+    label="Evaluation path: python scripts/run_eval.py --chunker <strategy>";
+    color="#bbf7d0";
+    style="rounded";
+
+    run_eval [label="scripts/run_eval.py\nCLI entry point\nLoads model + FAISS index,\nchooses reranker, calls pipeline", fillcolor="#dbeafe"];
+    retriever [label="src/retriever.py\nRetriever.retrieve()\nEmbeds query and searches FAISS Top-K", fillcolor="#e0f2fe"];
+    vector_store_search [label="src/vector_store.py\nFAISSStore.load(), search()\nReturns ranked chunks + similarity scores", fillcolor="#e0f2fe"];
+    reranker [label="src/reranker.py\nNoOpReranker by default\nOptional CrossEncoder reranks retrieved chunks", fillcolor="#e0f2fe"];
+    generator [label="src/generator.py\ngenerate_answer()\nOpenAI path if key exists;\notherwise extractive fallback", fillcolor="#e0f2fe"];
+    judge [label="src/judge.py\njudge_faithfulness()\nOpenAI LLM-as-judge if key exists;\notherwise lexical overlap judge", fillcolor="#e0f2fe"];
+    metrics [label="src/metrics.py\ncompute_metrics()\nRecall@K, Precision@K,\nMRR, nDCG@K", fillcolor="#e0f2fe"];
+    cost [label="src/cost.py\nestimate_cost()\nUses generation token counts and\nconfigured price constants", fillcolor="#e0f2fe"];
+    tracing [label="src/tracing.py\nsave_trace()\nWrites per-query audit trail", fillcolor="#e0f2fe"];
+    pipeline [label="src/pipeline.py\nrun_pipeline()\nOrchestrates each query:\nretrieve -> rerank -> generate -> judge -> score", fillcolor="#e0f2fe"];
+    eval_results [label="runs/eval_results*.jsonl\nOne row per query with metrics,\nlatency, cost, verdict", fillcolor="#dcfce7"];
+    traces [label="runs/traces*.jsonl\nDetailed query-level evidence:\nchunks, answer, judgment, timings", fillcolor="#dcfce7"];
+  }
+
+  subgraph cluster_dashboard {
+    label="Dashboard path: streamlit run app.py";
+    color="#fecaca";
+    style="rounded";
+
+    app [label="app.py\nStreamlit dashboard\nReads completed runs; it does not\nrebuild the index or rerun eval", fillcolor="#dbeafe"];
+    overview [label="Overview\nMean retrieval metrics,\nfaithfulness, latency, cost", fillcolor="#fee2e2"];
+    charts [label="Charts\nQuery-level bars for retrieval,\nfaithfulness, latency, cost", fillcolor="#fee2e2"];
+    compare [label="Chunker Comparison\nLoads all strategy result files and\ncompares word vs sentence vs semantic", fillcolor="#fee2e2"];
+    failures [label="Failure Analysis\nFlags low recall, unsupported answers,\nand slow queries", fillcolor="#fee2e2"];
+    trace_viewer [label="Trace Viewer\nExplains a single query end-to-end:\nretrieved chunks -> answer -> judge", fillcolor="#fee2e2"];
+  }
+
+  config -> build_index [label="path + strategy settings"];
+  config -> run_eval [label="Top-K, file paths"];
+  config -> app [label="strategy-aware loaders"];
+  env -> generator [label="controls OpenAI vs fallback"];
+  env -> judge [label="controls OpenAI vs fallback"];
+
+  raw_docs -> ingest [label="read source text"];
+  ingest -> build_index [label="Document objects"];
+  build_index -> chunking [label="selected strategy"];
+  chunking -> chunks_file [label="persist chunks"];
+  chunking -> embeddings [label="chunk text"];
+  embeddings -> vector_store_build [label="embedding matrix"];
+  vector_store_build -> faiss_index [label="save index + map"];
+
+  chunks_file -> sample_eval [label="browse chunk IDs"];
+  sample_eval -> eval_csv [label="starter questions"];
+  chunks_file -> remap_eval [label="source + target chunks"];
+  remap_eval -> eval_csv [label="strategy-specific labels"];
+
+  faiss_index -> run_eval [label="load built strategy"];
+  eval_csv -> run_eval [label="queries + relevant IDs"];
+  run_eval -> pipeline [label="execute evaluation loop"];
+  pipeline -> retriever [label="query"];
+  retriever -> embeddings [label="embed_query()"];
+  retriever -> vector_store_search [label="query vector"];
+  faiss_index -> vector_store_search [label="load index"];
+  vector_store_search -> retriever [label="Top-K chunks"];
+  retriever -> reranker [label="ranked candidates"];
+  reranker -> generator [label="context chunks"];
+  generator -> judge [label="answer + cited chunks"];
+  reranker -> metrics [label="retrieved chunk IDs"];
+  eval_csv -> metrics [label="relevant_chunk_ids"];
+  generator -> cost [label="input/output tokens"];
+  metrics -> pipeline [label="retrieval scores"];
+  judge -> pipeline [label="faithfulness verdict"];
+  cost -> pipeline [label="estimated USD"];
+  pipeline -> tracing [label="full per-query trace"];
+  tracing -> traces [label="append JSONL"];
+  pipeline -> eval_results [label="write summary JSONL"];
+
+  eval_results -> app [label="load_results()"];
+  traces -> app [label="load_traces()"];
+  app -> overview;
+  app -> charts;
+  app -> compare;
+  app -> failures;
+  app -> trace_viewer;
+}
